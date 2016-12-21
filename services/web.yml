@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  nginx:
+    image: "nginx:stable"
+    environment:
+      - SYMFONY_ENV
+      - MAX_BODY_SIZE=20
+      - FASTCGI_PASS=php:9000
+      - TIMEOUT=190
+      - DOCKER0NET
+    command: /bin/bash -c "cd /var/www/html/ezplatform && cp -a doc/nginx/ez_params.d /etc/nginx && bin/vhost.sh --template-file=doc/nginx/vhost.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+
+  apache_php56:
+    build: "../apache/php56"
+    environment:
+      - SYMFONY_ENV
+      - MAX_BODY_SIZE=20
+      - TIMEOUT=190
+      - DOCKER0NET
+    command: /bin/bash -c "cd /var/www/html/ezplatform && ./bin/vhost.sh --basedir=/var/www/html/ezplatform --template-file=doc/apache2/vhost.template --host-name=ezplatform | tee /etc/apache2/sites-enabled/ezplatform.conf > /dev/null && exec apache2-foreground"

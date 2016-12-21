@@ -1,0 +1,5 @@
+version: '2'
+
+services:
+  php7_fpm:
+    image: "ezsystems/php:7.0-v1"
