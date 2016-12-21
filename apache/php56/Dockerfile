@@ -1,6 +1,5 @@
 FROM debian:8
 
-#COPY php.ini /usr/local/etc/php/
 COPY apache2-foreground.sh /bin/apache2-foreground
 
 RUN apt-get update
