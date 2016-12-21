@@ -32,8 +32,8 @@ services:
       service: "mysql"
     networks:
       - backend
-    ports:
-      - "3306:3306"
+    expose:
+      - "3306"
 
 networks:
   backend:
