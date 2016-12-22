@@ -24,7 +24,7 @@ $ docker-compose up -d
 ```
 Now your containers are up and ready to use.
 
-The webserver is exposed is port 80 if there is already a service using this port is should be changed:
+The webserver is exposed in `port 80` if there is already a service using this port is should be changed:
 ``` yml
   web:
      ...
@@ -33,18 +33,20 @@ The webserver is exposed is port 80 if there is already a service using this por
 ```
 #####Selecting Environments
 
-Edit the `docker-compose.yml` and change the services for the desired ones.
+To change the service configuration use the UNIX environment variables `DOCKER_WEB`, `DOCKER_PHP`, `DOCKER_DB` 
 
-``` yml
-  php:
-    extends:
-      file: "services/php.yml"
-      service: "php7_fpm"
-   ...
+The default values are:
 
+`web: apache_php56`
+`php: php_fpm56`
+`db: mysql`
+
+Example:  Changing webserver to nginx
+``` sh
+$ export DOCKER_WEB=nginx
 ```
 
-All the service definitions are in their respective `.yml` file in the service directory.
+All the service definitions are in their respective `.yml` file in the services directory.
 
 (**TODO**) Use environment variables to select the environments
 
@@ -52,5 +54,6 @@ All the service definitions are in their respective `.yml` file in the service d
 ####TO DO
 
  - [ ] ezpublish support
- - [ ] improve enviroments selection
+ - [x] improve enviroments selection
  - [ ] reduce apache process
+ - [ ] database data persistance
