@@ -2,7 +2,7 @@
 
 This aims to improve the maintainability of environments and the overall experience as QA.
 
-Using a volume shared between containers with an ezplatform or ezpublish(**WIP**)  installation changes to the installation are instantaneous. 
+Using a volume shared between containers with an ezplatform or ezpublish(**WIP**)  installation changes to the installation are instantaneous.
 
 This way, reproducing and testing issues in different environments is easier and faster.
 
@@ -14,8 +14,8 @@ Make you read all the documentation.
 #### Instalation
 
  * Clone this repository
- * Install ezplatform/ezpublish in the same directory
- * In ezplatform `parameters.yml` the database_host change to 'db'
+ * install ezplatform to the `volumes/www` folder.
+ * Update ezplatform's `parameters.yml`, change the database_host to 'db'
 
 #### Usage
 Run the command
@@ -31,9 +31,9 @@ The webserver is exposed in `port 80` if there is already a service using this p
     ports:
       - "81:80"
 ```
-#####Selecting Environments
+##### Selecting Environments
 
-To change the service configuration use the UNIX environment variables `DOCKER_WEB`, `DOCKER_PHP`, `DOCKER_DB` 
+To change the service configuration use the UNIX environment variables `DOCKER_WEB`, `DOCKER_PHP`, `DOCKER_DB`
 
 The default values are:
 
@@ -46,14 +46,10 @@ Example:  Changing webserver to nginx
 $ export DOCKER_WEB=nginx
 ```
 
-All the service definitions are in their respective `.yml` file in the services directory.
-
-(**TODO**) Use environment variables to select the environments
+All the service definitions are in their respective `.yml` file in the `services` directory.
 
 
-####TO DO
+#### TO DO
 
- - [ ] ezpublish support
- - [x] improve enviroments selection
- - [ ] reduce apache process
- - [ ] database data persistance
+ - [ ] docker image for ezplatform installation
+ - [ ] support for ezpublish
