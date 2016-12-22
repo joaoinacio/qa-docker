@@ -9,7 +9,7 @@ services:
     links:
       - "db"
     volumes:
-      - "./ezplatform:/var/www/html/ezplatform"
+      - "./volumes/www:/var/www/html"
     networks:
       - backend
 
@@ -18,7 +18,7 @@ services:
       file: "services/web.yml"
       service: "apache_php56"
     volumes:
-      - "./ezplatform:/var/www/html/ezplatform"
+      - "./volumes/www:/var/www/html"
     networks:
       - backend
     links:
@@ -30,6 +30,8 @@ services:
     extends:
       file: "services/db.yml"
       service: "mysql"
+    volumes:
+        - "./volumes/db:/var/lib/mysql"
     networks:
       - backend
     expose:
