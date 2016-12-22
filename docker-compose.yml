@@ -1,11 +1,11 @@
-version: '2'
+version: '2.1'
 
 services:
 
   php:
     extends:
       file: "services/php.yml"
-      service: "php56_fpm"
+      service: "${DOCKER_PHP:-php56_fpm}"
     links:
       - "db"
     volumes:
@@ -16,7 +16,7 @@ services:
   web:
     extends:
       file: "services/web.yml"
-      service: "apache_php56"
+      service: "${DOCKER_WEB:-apache_php56}"
     volumes:
       - "./ezplatform:/var/www/html/ezplatform"
     networks:
@@ -29,7 +29,7 @@ services:
   db:
     extends:
       file: "services/db.yml"
-      service: "mysql"
+      service: "${DOCKER_DB:-mysql}"
     networks:
       - backend
     expose:
