@@ -1,1 +1,3 @@
-ezplatform
+volumes/*
+volumes/db/.keep
+volumes/www/.keep
